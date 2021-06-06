@@ -52,7 +52,7 @@ Generally the steps to create a genesis validator are as follows:
 
 1. [Install injectived](https://github.com/InjectiveLabs/injective-core/)
 
-2. [Setup your valudator keys]
+2. [Setup your validator keys]
 ```
 injectived init injective-protocol
 injectived keys add $VALIDATOR_KEY_NAME
