@@ -52,14 +52,22 @@ Generally the steps to create a genesis validator are as follows:
 1. [Install injectived](https://github.com/InjectiveLabs/injective-core/)
 
 2. [Setup your validator keys]
-```
-injectived init injective-protocol
-injectived keys add $VALIDATOR_KEY_NAME
-```
+  ```
+  injectived init injective-protocol --chain-id injective-1
+  injectived keys add $VALIDATOR_KEY_NAME
+  ```
 
-3. Download the [genesis file](https://github.com/InjectiveLabs/mainnet-genesis) to `~/.injectived/config/genesis.json`
+3 . Download the [penultimate genesis json file](https://github.com/InjectiveLabs/mainnet-genesis) to `~/.injectived/config/genesis.json`
 
-4. Sign a genesis transaction:
+4 . Add initial balance
+  ```bash
+  injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
+
+  Example to add 1000 inj
+  injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
+  ```
+
+5 . Sign a genesis transaction:
 
 ```bash
 injectived gentx \
@@ -74,58 +82,74 @@ injectived gentx \
   --output-document=external-val.json 
 ```
 
-Example
+Example genTx command staking 1000inj
 ```bash
-injectived gentx external-val-key-name  --chain-id=888 --amount 1000000000000000000000inj --ip=18.222.213.62 --output-document=external-val.json    --moniker="external-validator"     --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07
+injectived gentx external-val-key-name   1000000000000000000000inj  --chain-id="injective-1"  --ip=18.222.213.62 --output-document=external-val.json    --moniker="external-validator"     --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07
 ```
 
-This will produce a file in the ~/.injectived/config/gentx/ folder that has a name with the format `gentx-<node_id>.json`. The content of the file should have a structure as follows:
+This will produce a file `external-val.json` in current folder.  The content of the file should have a structure as follows:
 
 ```json
 {
-  "type": "auth/StdTx",
-  "value": {
-    "msg": [
+  "body" : {
+    "messages" : [
       {
-        "type": "cosmos-sdk/MsgCreateValidator",
-        "value": {
-          "description": {
-            "moniker": "<moniker>",
-            "identity": "",
-            "website": "",
-            "details": ""
-          },
-          "commission": {
-            "rate": "<commission_rate>",
-            "max_rate": "<commission_max_rate>",
-            "max_change_rate": "<commission_max_change_rate>"
-          },
-          "min_self_delegation": "1",
-          "delegator_address": "inj1msz843gguwhqx804cdc97n22c4lllfkk39qlnc",
-          "validator_address": "injvaloper1msz843gguwhqx804cdc97n22c4lllfkk5352lt",
-          "pubkey": "<consensus_pubkey>",
-          "value": {
-            "denom": "inj",
-            "amount": "100000000000"
-          }
+        "@type" : "/cosmos.staking.v1beta1.MsgCreateValidator",
+        "description" : {
+          "moniker" : "external-validator",
+          "identity" : "",
+          "website" : "",
+          "security_contact" : "",
+          "details" : ""
+        },
+        "commission" : {
+          "rate" : "0.070000000000000000",
+          "max_rate" : "1.000000000000000000",
+          "max_change_rate" : "0.010000000000000000"
+        },
+        "min_self_delegation" : "1",
+        "delegator_address" : "inj1793zghz5hu4mu6tm72e0gjfedv28my2d5dq0mx",
+        "validator_address" : "injvaloper1793zghz5hu4mu6tm72e0gjfedv28my2drt426z",
+        "pubkey" : {
+          "@type" : "/cosmos.crypto.ed25519.PubKey",
+          "key" : "YL2kLcyq+bRe760dfIeSW/4pxvs3myyfKq/wu5r/iVE="
+        },
+        "value" : {
+          "denom" : "inj",
+          "amount" : "1000000000000000000000"
         }
       }
     ],
-    "fee": {
-      "amount": null,
-      "gas": "200000"
-    },
-    "signatures": [
+    "memo" : "4e306f75d61b80d73f58e175821a10c585a6bafe@18.222.213.62:26656",
+    "timeout_height" : "0",
+    "extension_options" : [],
+    "non_critical_extension_options" : []
+  },
+  "auth_info" : {
+    "signer_infos" : [
       {
-        "pub_key": {
-          "type": "tendermint/PubKeySecp256k1",
-          "value": "AlT62zuYGlZGUG3Yv0RtIFoPTzVY4N+WEFmBvz1syjws"
+        "public_key" : {
+          "@type" : "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
+          "key" : "AhT1p+NFxZIzMdd4mTNyndw1wo8UcAQGw8/uhwSU2Nsa"
         },
-        "signature": ""
+        "mode_info" : {
+          "single" : {
+            "mode" : "SIGN_MODE_DIRECT"
+          }
+        },
+        "sequence" : "0"
       }
     ],
-    "memo": ""
-  }
+    "fee" : {
+      "amount" : [],
+      "gas_limit" : "200000",
+      "payer" : "",
+      "granter" : ""
+    }
+  },
+  "signatures" : [
+    "82LBR+XkC+2fXT6nWL2CCSz/v8nHYTf0S2+gylpggEhFNSPknYmi67xx2cjvOPrp3Me194PX5EnbX36naiGncwA="
+  ]
 }
 ```
 
