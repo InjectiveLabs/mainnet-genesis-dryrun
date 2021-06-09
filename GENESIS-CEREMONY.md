@@ -14,8 +14,8 @@ This validator set is computed from the set of signed `gentx` transactions with 
 Before you consider participating in this ceremony, please read the entire
 document.
 
-Genesis transactions will be collected on Github in this repository and checked for validity by an automated script.
-Genesis file collection will terminate on 7 June 2019 23:00 GMT. The final recommended genesis file will be published shortly after that time.
+Genesis transactions will be collected on Github in this repository and checked for validity.
+Genesis file collection will terminate on 12 June 2021 23:00 GMT. The final recommended genesis file will be published shortly after that time.
 
 By participating in this ceremony and submitting a gen-tx, you are making a commitment to your fellow validators
 that you will be around to bring your validator online by the recommended genesis time of 7 June 2019 23:00 GMT to launch the network. Note that you can start `injectived` 
@@ -42,127 +42,130 @@ To understand how this file was compiled, please see [GENESIS.md](GENESIS.md).
 A final recommendation will be available shortly, including a justification for
 all components of the genesis file and scripts to recompute it.
 
-Anyone with an INJ allocation in the [`penultimate_genesis.json`](./penultimate_genesis.json) who intends to participate in the genesis ceremony must submit a pull request
+Anyone who intends to participate in the genesis ceremony must submit a pull request
 containing a valid `gen-tx` to this repository in the `/gentx` folder with a file name like `<moniker>.json`.
+and transfer their staked INJ to Peggy contract address from same validator Eth address.
 
 ## Instructions
 
 Generally the steps to create a genesis validator are as follows:
 
-1. [Install injectived](https://github.com/InjectiveLabs/injective-core/)
+1. Install injectived from source
+    ```
+    git clone https://github.com/InjectiveLabs/injective-core/
+    cd injective-core
+    make install
+    ```
 
 2. [Setup your validator keys]
-  ```
-  injectived init injective-protocol --chain-id injective-1
-  injectived keys add $VALIDATOR_KEY_NAME
-  ```
+    ```
+    injectived init injective-protocol --chain-id injective-1
+    injectived keys add $VALIDATOR_KEY_NAME
+    ```
 
-3 . Download the [penultimate genesis json file](https://github.com/InjectiveLabs/mainnet-genesis) to `~/.injectived/config/genesis.json`
+3. Download the [penultimate genesis json file](https://github.com/InjectiveLabs/mainnet-genesis) to `~/.injectived/config/genesis.json`
 
-4 . Add initial balance
-  ```bash
-  injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
+4. Add initial balance. We will only accept self delegation transactions up to 1000 inj for genesis.
+    ```bash
+    injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
 
-  Example to add 1000 inj
-  injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
-  ```
+    Example (add 1000 inj)
+    injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
+    ```
 
-5 . Sign a genesis transaction:
+5. Sign a genesis transaction:
+    ```bash
+    injectived gentx \
+      <$VALIDATOR_KEY_NAME> \
+      --amount <amount_of_delegation_inj> \
+      --commission-rate <commission_rate> \
+      --commission-max-rate <commission_max_rate> \
+      --commission-max-change-rate <commission_max_change_rate> \
+      --pubkey <consensus_pubkey> \
+      --ip=<ip_address> \
+      --moniker=<name> \
+      --output-document=external-val.json 
+    ```
 
-```bash
-injectived gentx \
-  <$VALIDATOR_KEY_NAME> \
-  --amount <amount_of_delegation_inj> \
-  --commission-rate <commission_rate> \
-  --commission-max-rate <commission_max_rate> \
-  --commission-max-change-rate <commission_max_change_rate> \
-  --pubkey <consensus_pubkey> \
-  --ip=<ip_address> \
-  --moniker=<name> \
-  --output-document=external-val.json 
-```
+    Example `genTx` command staking 1000inj
+    ```bash
+    injectived gentx external-val-key-name   1000000000000000000000inj  --chain-id="injective-1"  --ip=18.222.213.61 --output-document=external-val.json    --moniker="external-validator"  --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07
+    ```
 
-Example genTx command staking 1000inj
-```bash
-injectived gentx external-val-key-name   1000000000000000000000inj  --chain-id="injective-1"  --ip=18.222.213.62 --output-document=external-val.json    --moniker="external-validator"     --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07
-```
+    This will produce a file `external-val.json` in current folder.  The content of the file should have a structure as follows:
 
-This will produce a file `external-val.json` in current folder.  The content of the file should have a structure as follows:
-
-```json
-{
-  "body" : {
-    "messages" : [
-      {
-        "@type" : "/cosmos.staking.v1beta1.MsgCreateValidator",
-        "description" : {
-          "moniker" : "external-validator",
-          "identity" : "",
-          "website" : "",
-          "security_contact" : "",
-          "details" : ""
-        },
-        "commission" : {
-          "rate" : "0.070000000000000000",
-          "max_rate" : "1.000000000000000000",
-          "max_change_rate" : "0.010000000000000000"
-        },
-        "min_self_delegation" : "1",
-        "delegator_address" : "inj1793zghz5hu4mu6tm72e0gjfedv28my2d5dq0mx",
-        "validator_address" : "injvaloper1793zghz5hu4mu6tm72e0gjfedv28my2drt426z",
-        "pubkey" : {
-          "@type" : "/cosmos.crypto.ed25519.PubKey",
-          "key" : "YL2kLcyq+bRe760dfIeSW/4pxvs3myyfKq/wu5r/iVE="
-        },
-        "value" : {
-          "denom" : "inj",
-          "amount" : "1000000000000000000000"
-        }
-      }
-    ],
-    "memo" : "4e306f75d61b80d73f58e175821a10c585a6bafe@18.222.213.62:26656",
-    "timeout_height" : "0",
-    "extension_options" : [],
-    "non_critical_extension_options" : []
-  },
-  "auth_info" : {
-    "signer_infos" : [
-      {
-        "public_key" : {
-          "@type" : "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
-          "key" : "AhT1p+NFxZIzMdd4mTNyndw1wo8UcAQGw8/uhwSU2Nsa"
-        },
-        "mode_info" : {
-          "single" : {
-            "mode" : "SIGN_MODE_DIRECT"
+    ```json
+    {
+      "body" : {
+        "messages" : [
+          {
+            "@type" : "/cosmos.staking.v1beta1.MsgCreateValidator",
+            "description" : {
+              "moniker" : "external-validator",
+              "identity" : "",
+              "website" : "",
+              "security_contact" : "",
+              "details" : ""
+            },
+            "commission" : {
+              "rate" : "0.070000000000000000",
+              "max_rate" : "1.000000000000000000",
+              "max_change_rate" : "0.010000000000000000"
+            },
+            "min_self_delegation" : "1",
+            "delegator_address" : "inj1793zghz5hu4mu6tm72e0gjfedv28my2d5dq0mx",
+            "validator_address" : "injvaloper1793zghz5hu4mu6tm72e0gjfedv28my2drt426z",
+            "pubkey" : {
+              "@type" : "/cosmos.crypto.ed25519.PubKey",
+              "key" : "YL2kLcyq+bRe760dfIeSW/4pxvs3myyfKq/wu5r/iVE="
+            },
+            "value" : {
+              "denom" : "inj",
+              "amount" : "1000000000000000000000"
+            }
           }
-        },
-        "sequence" : "0"
-      }
-    ],
-    "fee" : {
-      "amount" : [],
-      "gas_limit" : "200000",
-      "payer" : "",
-      "granter" : ""
+        ],
+        "memo" : "4e306f75d61b80d73f58e175821a10c585a6bafe@18.222.213.62:26656",
+        "timeout_height" : "0",
+        "extension_options" : [],
+        "non_critical_extension_options" : []
+      },
+      "auth_info" : {
+        "signer_infos" : [
+          {
+            "public_key" : {
+              "@type" : "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
+              "key" : "AhT1p+NFxZIzMdd4mTNyndw1wo8UcAQGw8/uhwSU2Nsa"
+            },
+            "mode_info" : {
+              "single" : {
+                "mode" : "SIGN_MODE_DIRECT"
+              }
+            },
+            "sequence" : "0"
+          }
+        ],
+        "fee" : {
+          "amount" : [],
+          "gas_limit" : "200000",
+          "payer" : "",
+          "granter" : ""
+        }
+      },
+      "signatures" : [
+        "82LBR+XkC+2fXT6nWL2CCSz/v8nHYTf0S2+gylpggEhFNSPknYmi67xx2cjvOPrp3Me194PX5EnbX36naiGncwA="
+      ]
     }
-  },
-  "signatures" : [
-    "82LBR+XkC+2fXT6nWL2CCSz/v8nHYTf0S2+gylpggEhFNSPknYmi67xx2cjvOPrp3Me194PX5EnbX36naiGncwA="
-  ]
-}
-```
+    ```
 
-__**NOTE**__: If you would like to override the memo field use the `--ip` and `--node-id` flags for the `injectived gentx` command above.
+    __**NOTE**__: If you would like to override the memo field use the `--ip` and `--node-id` flags for the `injectived gentx` command above.
 
-Finally, to participate in this ceremony, copy this file to the `gentx` folder in this repo
-and submit a pull request:
+6. copy this file to the `gentx` folder in this repo and submit a pull request:
+    ```
+    cp external-val.json ./gentx/<moniker>.json
+    ```
+7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy contract address and send a message in discord.
 
-```
-cp ~/.injectived/config/gentx/gentx-<node_id>.json ./gentx/<moniker>.json
-```
-
-We will only accept self delegation transactions up to 1000 inj for genesis.
 
 ## A Note about your Validator Signing Key
 
@@ -179,7 +182,7 @@ The Injective foundation will recommend a particular genesis file and software v
 is no guarantee a network will ever start from it - nodes and validators may
 never come online, the community may disregard the recommendation and choose
 different genesis files, and/or they may modify the software in arbitrary ways. Such
-outcomes and many more are outside the ICF's control and completely in the hands
+outcomes and many more are outside the Injective foundation and completely in the hands
 of the community
 
 On initialization of the software, the Injective chain Bonded Proof-of-Stake system will kick in to
