@@ -68,6 +68,8 @@ Generally the steps to create a genesis validator are as follows:
 4. Add initial balance. We will only accept self delegation transactions up to 1000 inj for genesis.
     ```bash
     injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
+    
+    where amount_of_inj = amount_of_delegation_inj + extra_inj_balance(useful to pay for tx fee) 
 
     Example (add 1000 inj)
     injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
@@ -164,7 +166,7 @@ Generally the steps to create a genesis validator are as follows:
     ```
     cp external-val.json ./gentx/<moniker>.json
     ```
-7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy contract address and send a message in discord.
+7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy proxy contract address and send a message with Ethereum tx hash in discord.
 
 
 ## A Note about your Validator Signing Key
