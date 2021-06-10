@@ -69,7 +69,7 @@ Generally the steps to create a genesis validator are as follows:
     ```bash
     injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
     
-    where amount_of_inj = amount_of_delegation_inj + extra_inj_balance(useful to pay for tx fee) 
+    where amount_of_inj = amount_to_stake_inj + extra_inj_balance(useful to pay for tx fee) 
 
     Example (add 1000 inj)
     injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
@@ -79,7 +79,7 @@ Generally the steps to create a genesis validator are as follows:
     ```bash
     injectived gentx \
       <$VALIDATOR_KEY_NAME> \
-      --amount <amount_of_delegation_inj> \
+      --amount <amount_to_stake_inj> \
       --commission-rate <commission_rate> \
       --commission-max-rate <commission_max_rate> \
       --commission-max-change-rate <commission_max_change_rate> \
