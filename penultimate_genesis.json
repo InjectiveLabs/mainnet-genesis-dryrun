@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2021-06-09T04:46:51.29631Z",
+  "genesis_time": "2021-06-14T12:04:27.063467Z",
   "chain_id": "injective-1",
   "initial_height": "1",
   "consensus_params": {
@@ -41,7 +41,7 @@
         {
           "@type": "/injective.types.v1beta1.EthAccount",
           "base_account": {
-            "address": "inj16e4uzuu67twf7hzwwl86multgqkg0qj9va4shh",
+            "address": "inj1caufdv47fc44v5jwf4678nz7h3jy06gtfvucer",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -51,7 +51,7 @@
         {
           "@type": "/injective.types.v1beta1.EthAccount",
           "base_account": {
-            "address": "inj1vplnm5wt602yzv252f5gy2c5m8vkq6v8eef940",
+            "address": "inj1l30h6eyuh5dgayjeqeztv4r5xy4vt6k9jqqwnm",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -61,7 +61,17 @@
         {
           "@type": "/injective.types.v1beta1.EthAccount",
           "base_account": {
-            "address": "inj13x9dthzq5qn7p0caq4ap4wx7sck8xnuvz5jv4j",
+            "address": "inj10atlsmwa4e3rcrztfn2c2sesm7x8jdcwpyvg5r",
+            "pub_key": null,
+            "account_number": "0",
+            "sequence": "0"
+          },
+          "code_hash": "xdJGAYb3IzySfn2y3McDwOUAtlPKgic7e/rYBF2FpHA="
+        },
+        {
+          "@type": "/injective.types.v1beta1.EthAccount",
+          "base_account": {
+            "address": "inj1rrzrj898kw6dycgdpxgt560fj5kg0qk63jh72k",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -80,29 +90,38 @@
       },
       "balances": [
         {
-          "address": "inj1vplnm5wt602yzv252f5gy2c5m8vkq6v8eef940",
+          "address": "inj1rrzrj898kw6dycgdpxgt560fj5kg0qk63jh72k",
           "coins": [
             {
               "denom": "inj",
-              "amount": "23333333000000000000000000"
+              "amount": "2500000000000000000000000"
             }
           ]
         },
         {
-          "address": "inj13x9dthzq5qn7p0caq4ap4wx7sck8xnuvz5jv4j",
+          "address": "inj10atlsmwa4e3rcrztfn2c2sesm7x8jdcwpyvg5r",
           "coins": [
             {
               "denom": "inj",
-              "amount": "23333333000000000000000000"
+              "amount": "2500000000000000000000000"
             }
           ]
         },
         {
-          "address": "inj16e4uzuu67twf7hzwwl86multgqkg0qj9va4shh",
+          "address": "inj1caufdv47fc44v5jwf4678nz7h3jy06gtfvucer",
           "coins": [
             {
               "denom": "inj",
-              "amount": "23333333000000000000000000"
+              "amount": "2500000000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "inj1l30h6eyuh5dgayjeqeztv4r5xy4vt6k9jqqwnm",
+          "coins": [
+            {
+              "denom": "inj",
+              "amount": "2500000000000000000000000"
             }
           ]
         }
@@ -110,7 +129,7 @@
       "supply": [
         {
           "denom": "inj",
-          "amount": "69999999000000000000000000"
+          "amount": "10000000000000000000000000"
         }
       ],
       "denom_metadata": []
@@ -178,8 +197,9 @@
       "positions": [],
       "subaccount_trade_nonces": [],
       "expiry_futures_market_info_state": [],
-      "perpetual_market_info_state": [],
-      "perpetual_market_funding_state": []
+      "perpetual_market_info": [],
+      "perpetual_market_funding_state": [],
+      "derivative_market_settlement_scheduled": []
     },
     "feegrant": {
       "allowances": []
@@ -204,19 +224,19 @@
                   "max_change_rate": "1.000000000000000000"
                 },
                 "min_self_delegation": "1",
-                "delegator_address": "inj16e4uzuu67twf7hzwwl86multgqkg0qj9va4shh",
-                "validator_address": "injvaloper16e4uzuu67twf7hzwwl86multgqkg0qj9mmq4kn",
+                "delegator_address": "inj1caufdv47fc44v5jwf4678nz7h3jy06gtfvucer",
+                "validator_address": "injvaloper1caufdv47fc44v5jwf4678nz7h3jy06gt72fac8",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
-                  "key": "kziSMpoP2DiUDTSbcVKy3rNhH+s7lot3R5eJ0QjTnhM="
+                  "key": "g7tlc0WVJJt5jba3NQ0XdFBdRYK4ddgtrVVtuPX00a8="
                 },
                 "value": {
                   "denom": "inj",
-                  "amount": "21666666000000000000000000"
+                  "amount": "2400000000000000000000000"
                 }
               }
             ],
-            "memo": "b137edc47a06118fccccbc47efe32ab0124a63fa@192.168.10.2:26656",
+            "memo": "37c39d49dd5721ebe298c985f1bbd2d9bfebbfe8@147.75.98.175:26656",
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": []
@@ -226,7 +246,7 @@
               {
                 "public_key": {
                   "@type": "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
-                  "key": "AkPkoN6lYkDmYNlWoap4Lu1HVk0/0WSuznKrBNMVw1Qx"
+                  "key": "A2O0GM33gQuB/1tg5241rv0d2apjfI1SLmLifXW3Vl1z"
                 },
                 "mode_info": {
                   "single": {
@@ -244,7 +264,7 @@
             }
           },
           "signatures": [
-            "C1+njtnajbf23FKrpvwZOC0Td0BzeTZ9dqrZ/n7bDdJL1nNsERLMhTHOjpZGEt7h9SC1QfmhAugNsccmdMhOxwE="
+            "CWgN+Z4ia7xs4uf/DS9F/xdZKcZRyQfYeY1SMoT4WHAQoYEYSdWzydWIrNP2cSyuDemk+/gjARBhE9tSm6GC6QA="
           ]
         },
         {
@@ -265,19 +285,19 @@
                   "max_change_rate": "1.000000000000000000"
                 },
                 "min_self_delegation": "1",
-                "delegator_address": "inj1vplnm5wt602yzv252f5gy2c5m8vkq6v8eef940",
-                "validator_address": "injvaloper1vplnm5wt602yzv252f5gy2c5m8vkq6v8wluq5t",
+                "delegator_address": "inj1l30h6eyuh5dgayjeqeztv4r5xy4vt6k9jqqwnm",
+                "validator_address": "injvaloper1l30h6eyuh5dgayjeqeztv4r5xy4vt6k99x4tjl",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
-                  "key": "WhG8rFazLPKbyuMoeOAxsOdmbqNIY9f2eSNnnSh6r0g="
+                  "key": "QdiE1ZjjCTq5yYp9TZ6FJ2lVAwoGpcJrqEvW6kle7yU="
                 },
                 "value": {
                   "denom": "inj",
-                  "amount": "21666666000000000000000000"
+                  "amount": "2400000000000000000000000"
                 }
               }
             ],
-            "memo": "d3b5a92fa080ff8d0329033ab4fb3189668f542d@192.168.10.3:26656",
+            "memo": "1d917437a53c75112036afc578164f8be8688538@145.40.64.193:26656",
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": []
@@ -287,7 +307,7 @@
               {
                 "public_key": {
                   "@type": "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
-                  "key": "Avz2fms3haANzDRsxx71JM42+t/S2xVl6aK9SdCxK2gq"
+                  "key": "AuwreE0hNW3SWjBWiZRjRtl9WvrDC5d+BZ5yj3jS014/"
                 },
                 "mode_info": {
                   "single": {
@@ -305,7 +325,7 @@
             }
           },
           "signatures": [
-            "ynj0KOQYVogASP0pRoBgoh8ql6DFqtPaUdwApQD+LmZeVkIgHB8SJyJ27+EbBgNrLcShclJqaiekrM5IpKjCsQA="
+            "JQp6lyGWkKRsrRA2aEdQPxwx85P4RFShPCtFc1q4KnFm3WlPwW0ZTnJGvWaoS49BIB7gkAo7gM015gff0v430wA="
           ]
         },
         {
@@ -326,19 +346,19 @@
                   "max_change_rate": "1.000000000000000000"
                 },
                 "min_self_delegation": "1",
-                "delegator_address": "inj13x9dthzq5qn7p0caq4ap4wx7sck8xnuvz5jv4j",
-                "validator_address": "injvaloper13x9dthzq5qn7p0caq4ap4wx7sck8xnuv4j8f5k",
+                "delegator_address": "inj10atlsmwa4e3rcrztfn2c2sesm7x8jdcwpyvg5r",
+                "validator_address": "injvaloper10atlsmwa4e3rcrztfn2c2sesm7x8jdcwkzed48",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
-                  "key": "ywtkLW9gX95vRSLP/zITxiekip9hWUYVqL7aa+G//IM="
+                  "key": "cL2phQUQ9BctAoeE5ZIcvy7GZ44BnSV5WbAsfDpMKc8="
                 },
                 "value": {
                   "denom": "inj",
-                  "amount": "21666666000000000000000000"
+                  "amount": "2400000000000000000000000"
                 }
               }
             ],
-            "memo": "7638ed121a19eb408fd2fea190582ae0efc34319@192.168.10.4:26656",
+            "memo": "a8673fd551052369aafba3455bb902d0aa3b978e@136.144.51.203:26656",
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": []
@@ -348,7 +368,7 @@
               {
                 "public_key": {
                   "@type": "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
-                  "key": "A5UVlHfOLCJ0SE4gG5c6RYM+wMmCMpB9MFlj8dThOMq7"
+                  "key": "AurJX+mIMzo+jfmAv1ngLT/2YGlrm/UAwSo+6ExAFb+2"
                 },
                 "mode_info": {
                   "single": {
@@ -366,7 +386,68 @@
             }
           },
           "signatures": [
-            "cqIRtOhEUyR3e6TvpSqZBl/mefmnJ9sq47vqusg0gwkKbhOfRCUa1jCt43llQsf5dlsw1/OOAwnq/1MSvNJRhwE="
+            "AtyLHFPm8YfEeRmrwe3Eni2zdTK9ZuUxtYBmfbfxckkbpz+uRT4jDoSXKnz0mGRLsXT3oIvHUitvItUzg/M7bAA="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "node3",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "1.000000000000000000",
+                  "max_rate": "1.000000000000000000",
+                  "max_change_rate": "1.000000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "inj1rrzrj898kw6dycgdpxgt560fj5kg0qk63jh72k",
+                "validator_address": "injvaloper1rrzrj898kw6dycgdpxgt560fj5kg0qk6x5zmtj",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "KIlw5SSXdSadzPWbgWhYDqeHXnElQr1x4sLOr3hAUL4="
+                },
+                "value": {
+                  "denom": "inj",
+                  "amount": "2400000000000000000000000"
+                }
+              }
+            ],
+            "memo": "c7b77ca885038461d56c5c446d600adc67777d97@136.144.51.201:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/injective.crypto.v1beta1.ethsecp256k1.PubKey",
+                  "key": "A6ggAaWGzrW/mVPbzcEQ35BOMOR3+XZxNb0IJ8CPdT3T"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "0",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "AX6TFvmZf8Ky9TuyJGxOFJHKRUAJ1UuZbrzcaRp0Cd1dJJJIrdiPvLyJ99EFhFaqF/cYjJLvfw2TptZXTYwBvAE="
           ]
         }
       ]
