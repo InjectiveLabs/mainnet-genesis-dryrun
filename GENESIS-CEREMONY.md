@@ -53,13 +53,16 @@ Generally the steps to create a genesis validator are as follows:
 1. Install injectived from source
     ```
     wget https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v1.0.1-1623671596/linux-amd64.zip
+    ```
+
     This zip file will contain two binaries: injectived which is the Injective Chain daemon as well as peggo which is the Injective Chain ERC-20 bridge relayer daemon.
     Then unzip and add injectived and peggo to your /usr/bin.
 
+    ```
     mv injectived /usr/bin
     mv peggo /usr/bin
-
     ```
+
     Verify Versions
     ```
     injectived version
@@ -178,7 +181,7 @@ Generally the steps to create a genesis validator are as follows:
     ```
     cp external-val.json ./gentx/<moniker>.json
     ```
-7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy proxy contract address and send a message with Ethereum tx hash in discord.
+7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy proxy contract address (`0x850Bc867f739950dd15f248DdB8f79453A76Bf8b`) and send a message with Ethereum tx hash in discord.
 
 
 ## A Note about your Validator Signing Key
