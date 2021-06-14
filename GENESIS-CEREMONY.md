@@ -95,10 +95,10 @@ Generally the steps to create a genesis validator are as follows:
     injectived gentx \
       <$VALIDATOR_KEY_NAME> \
       --amount <amount_to_stake_inj> \
+      --chain-id="injective-1" \
       --commission-rate <commission_rate> \
       --commission-max-rate <commission_max_rate> \
-      --commission-max-change-rate <commission_max_change_rate> \
-      --pubkey <consensus_pubkey> \
+      --commission-max-change-rate <commission_max_change_rate> \      
       --ip=<ip_address> \
       --moniker=<name> \
       --output-document=external-val.json 
