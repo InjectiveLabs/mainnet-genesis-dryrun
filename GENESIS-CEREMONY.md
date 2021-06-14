@@ -15,10 +15,10 @@ Before you consider participating in this ceremony, please read the entire
 document.
 
 Genesis transactions will be collected on Github in this repository and checked for validity.
-Genesis file collection will terminate on 12 June 2021 23:00 GMT. The final recommended genesis file will be published shortly after that time.
+Genesis file collection will terminate on 14 June 2021 11:00 ET. The final recommended genesis file will be published shortly after that time.
 
 By participating in this ceremony and submitting a gen-tx, you are making a commitment to your fellow validators
-that you will be around to bring your validator online by the recommended genesis time of 7 June 2019 23:00 GMT to launch the network. Note that you can start `injectived` 
+that you will be around to bring your validator online by the recommended genesis time of 14 June 2021 11:30 ET to launch the network. Note that you can start `injectived` 
 with the recommended genesis file before that time and, assuming you configure it successfully, it will automatically start the peer-to-peer and consensus processes once the genesis timestamp is reached.
 
 Please keep the following things in mind.
@@ -52,9 +52,21 @@ Generally the steps to create a genesis validator are as follows:
 
 1. Install injectived from source
     ```
-    git clone https://github.com/InjectiveLabs/injective-core/
-    cd injective-core
-    make install
+    wget https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v1.0.1-1623671596/linux-amd64.zip
+    This zip file will contain two binaries: injectived which is the Injective Chain daemon as well as peggo which is the Injective Chain ERC-20 bridge relayer daemon.
+    Then unzip and add injectived and peggo to your /usr/bin.
+
+    mv injectived /usr/bin
+    mv peggo /usr/bin
+
+    ```
+    Verify Versions
+    ```
+    injectived version
+    Version dev (8a4224ed)
+
+    peggo version
+    Version dev (57a4e38)
     ```
 
 2. [Setup your validator keys]
