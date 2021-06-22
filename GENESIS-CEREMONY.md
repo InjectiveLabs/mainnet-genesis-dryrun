@@ -15,10 +15,10 @@ Before you consider participating in this ceremony, please read the entire
 document.
 
 Genesis transactions will be collected on Github in this repository and checked for validity.
-Genesis file collection will terminate on 14 June 2021 11:00 ET. The final recommended genesis file will be published shortly after that time.
+Genesis file collection will terminate on  22 June 2021 11:00 AM EST. The final recommended genesis file will be published shortly after that time.
 
 By participating in this ceremony and submitting a gen-tx, you are making a commitment to your fellow validators
-that you will be around to bring your validator online by the recommended genesis time of 14 June 2021 11:30 ET to launch the network. Note that you can start `injectived` 
+that you will be around to bring your validator online by the recommended genesis time of 22 June 2021 11:30 AM ET to launch the network. Note that you can start `injectived` 
 with the recommended genesis file before that time and, assuming you configure it successfully, it will automatically start the peer-to-peer and consensus processes once the genesis timestamp is reached.
 
 Please keep the following things in mind.
@@ -37,8 +37,6 @@ It **IS NOT** the final recommended genesis file.
 If you find an error in this genesis file, please contact us
 immediately at "injectiveprotocol.com".
 
-To understand how this file was compiled, please see [GENESIS.md](GENESIS.md).
-
 A final recommendation will be available shortly, including a justification for
 all components of the genesis file and scripts to recompute it.
 
@@ -52,7 +50,7 @@ Generally the steps to create a genesis validator are as follows:
 
 1. Install injectived from source
     ```
-    wget https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v1.0.1-1623671596/linux-amd64.zip
+    wget https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v4.0.9-1624286601/linux-amd64.zip
     ```
 
     This zip file will contain two binaries: injectived which is the Injective Chain daemon as well as peggo which is the Injective Chain ERC-20 bridge relayer daemon.
@@ -66,10 +64,10 @@ Generally the steps to create a genesis validator are as follows:
     Verify Versions
     ```
     injectived version
-    Version dev (8a4224ed)
+    Version dev (01af8653)
 
     peggo version
-    Version dev (57a4e38)
+    Version dev (6523f05)
     ```
 
 2. [Setup your validator keys]
@@ -78,13 +76,13 @@ Generally the steps to create a genesis validator are as follows:
     injectived keys add $VALIDATOR_KEY_NAME
     ```
 
-3. Download the [penultimate genesis json file](https://github.com/InjectiveLabs/mainnet-genesis) to `~/.injectived/config/genesis.json`
+3. Download the [penultimate genesis json file](https://github.com/InjectiveLabs/mainnet-genesis) and replace contents of `~/.injectived/config/genesis.json` with `penultimate_genesis.json`
 
 4. Add initial balance. We will only accept self delegation transactions up to 1000 inj for genesis.
     ```bash
     injectived add-genesis-account $VALIDATOR_KEY_NAME <amount_of_inj>
     
-    where amount_of_inj = amount_to_stake_inj + extra_inj_balance(useful to pay for tx fee) 
+    where amount_of_inj = inj_amount_to_stake + extra_inj_balance(useful to pay for tx fee) 
 
     Example (add 1000 inj)
     injectived add-genesis-account $VALIDATOR_KEY_NAME 1000000000000000000000inj
@@ -94,19 +92,18 @@ Generally the steps to create a genesis validator are as follows:
     ```bash
     injectived gentx \
       <$VALIDATOR_KEY_NAME> \
-      --amount <amount_to_stake_inj> \
+      --amount <inj_amount_to_stake> \
       --chain-id="injective-1" \
       --commission-rate <commission_rate> \
       --commission-max-rate <commission_max_rate> \
-      --commission-max-change-rate <commission_max_change_rate> \      
-      --ip=<ip_address> \
+      --commission-max-change-rate <commission_max_change_rate> \            
       --moniker=<name> \
       --output-document=external-val.json 
     ```
 
-    Example `genTx` command staking 1000inj
+    Example `genTx` command staking 900inj
     ```bash
-    injectived gentx external-val-key-name   1000000000000000000000inj  --chain-id="injective-1"  --ip=18.222.213.61 --output-document=external-val.json    --moniker="external-validator"  --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07
+    injectived gentx external-val-key-name   900000000000000000000inj  --chain-id="injective-1"    --moniker="external-validator"  --commission-max-change-rate=0.01     --commission-max-rate=1.0     --commission-rate=0.07 --output-document=external-val.json
     ```
 
     This will produce a file `external-val.json` in current folder.  The content of the file should have a structure as follows:
@@ -181,7 +178,8 @@ Generally the steps to create a genesis validator are as follows:
     ```
     cp external-val.json ./gentx/<moniker>.json
     ```
-7. Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy proxy contract address (`0x850Bc867f739950dd15f248DdB8f79453A76Bf8b`) and send a message with Ethereum tx hash in discord.
+7.(Optional for dry run) Finally, to participate in this ceremony, transfer your INJ genesis stake amount to Peggy proxy contract address (`0x0C2C33B7372bDc1e7b908898Cf2d1AAC1918352f`) and send a message with Ethereum tx hash in discord.
+
 
 
 ## A Note about your Validator Signing Key
